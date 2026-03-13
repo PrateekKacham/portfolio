@@ -154,7 +154,7 @@ function Nav({ goTo }) {
         <div style={{ width:1, height:16, background: BORDER }} />
         <a href="https://github.com/PrateekKacham" target="_blank" style={{ color:"#888", display:"flex", alignItems:"center", textDecoration:"none", transition:"color 0.2s" }} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}><GH /></a>
         <a href="https://linkedin.com/in/sai-vinayaka-venkata-prateek-kacham" target="_blank" style={{ color:"#888", display:"flex", alignItems:"center", textDecoration:"none", transition:"color 0.2s" }} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}><LI /></a>
-        <a href="mailto:kacham.sai@northeastern.edu" style={{ fontSize:12, fontWeight:600, color:"#fff", textDecoration:"none", background: RED, borderRadius:6, padding:"7px 18px", letterSpacing:"0.04em", textTransform:"uppercase", transition:"opacity 0.2s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+        <a href="/portfolio/resume.pdf" style={{ fontSize:12, fontWeight:600, color:"#fff", textDecoration:"none", background: RED, borderRadius:6, padding:"7px 18px", letterSpacing:"0.04em", textTransform:"uppercase", transition:"opacity 0.2s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
           Resume ↗
         </a>
       </div>
@@ -332,7 +332,7 @@ function ProjectDetail({ p, onBack }) {
 
       {p.screenshot && (
         <div style={{ marginBottom:56, borderRadius:12, overflow:"hidden", border:`1px solid ${BORDER}` }}>
-          <img src={`/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
+          <img src={`/portfolio/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
         </div>
       )}
       <div style={{ height:1, background: BORDER, marginBottom:56 }} />
