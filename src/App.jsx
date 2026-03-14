@@ -4,6 +4,24 @@ const RED = "#E8173A";
 const DIM = "#999";
 const BORDER = "#1c1c1c";
 
+// inject mobile styles once
+const mobileCSS = `
+  @media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .hero-pad { padding: 0 24px !important; }
+    .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .stats-grid { grid-template-columns: 1fr 1fr !important; }
+    .stats-grid > div:nth-child(2) { border-right: none !important; }
+    .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .project-row { grid-template-columns: 40px 1fr !important; gap: 16px !important; padding: 20px 0 !important; }
+    .project-metric { display: none !important; }
+    .section-pad { padding: 80px 24px !important; }
+    .hero-stats { border-left: none !important; flex-direction: column !important; gap: 24px !important; }
+    .hero-stats > div { border-right: none !important; padding: 0 !important; border-bottom: 1px solid #1c1c1c; padding-bottom: 16px !important; }
+    .hero-stats > div:last-child { border-bottom: none !important; }
+  }
+`;
+
 const PROJECTS = [
   {
     id: "mistral",
@@ -149,12 +167,12 @@ function Nav({ goTo }) {
       <span onClick={() => goTo("hero")} style={{ fontSize:14, fontWeight:700, color:"#fff", cursor:"pointer", letterSpacing:"0.06em", textTransform:"uppercase" }}>
         PK<span style={{ color: RED }}>.</span>
       </span>
-      <div style={{ display:"flex", gap:32, alignItems:"center" }}>
+      <div style={{ display:"flex", gap:32, alignItems:"center" }} className="nav-links">
         {["About","Projects","Skills","Contact"].map(link)}
         <div style={{ width:1, height:16, background: BORDER }} />
         <a href="https://github.com/PrateekKacham" target="_blank" style={{ color:"#888", display:"flex", alignItems:"center", textDecoration:"none", transition:"color 0.2s" }} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}><GH /></a>
         <a href="https://linkedin.com/in/sai-vinayaka-venkata-prateek-kacham" target="_blank" style={{ color:"#888", display:"flex", alignItems:"center", textDecoration:"none", transition:"color 0.2s" }} onMouseEnter={e=>e.currentTarget.style.color="#fff"} onMouseLeave={e=>e.currentTarget.style.color="#888"}><LI /></a>
-        <a href="/portfolio/resume.pdf" style={{ fontSize:12, fontWeight:600, color:"#fff", textDecoration:"none", background: RED, borderRadius:6, padding:"7px 18px", letterSpacing:"0.04em", textTransform:"uppercase", transition:"opacity 0.2s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+        <a href="mailto:kacham.sai@northeastern.edu" style={{ fontSize:12, fontWeight:600, color:"#fff", textDecoration:"none", background: RED, borderRadius:6, padding:"7px 18px", letterSpacing:"0.04em", textTransform:"uppercase", transition:"opacity 0.2s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
           Resume ↗
         </a>
       </div>
@@ -179,7 +197,7 @@ function Hero({ goTo }) {
   }, [typed, del, rIdx]);
 
   return (
-    <section data-section="hero" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 64px", maxWidth:1200, margin:"0 auto", position:"relative" }}>
+    <section data-section="hero" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 64px", maxWidth:1200, margin:"0 auto", position:"relative" }} className="hero-pad">
 
 
       <div>
@@ -202,7 +220,7 @@ function Hero({ goTo }) {
         </p>
 
         {/* Stats */}
-        <div style={{ display:"flex", gap:0, marginBottom:64, borderLeft:`1px solid ${BORDER}` }}>
+        <div style={{ display:"flex", gap:0, marginBottom:64, borderLeft:`1px solid ${BORDER}` }} className="hero-stats">
           {[["0.11 → 0.33","SQL exact match"],["200+","production users"],["7","projects shipped"]].map(([num, label], i) => (
             <div key={label} style={{ padding:"0 40px", borderRight:`1px solid ${BORDER}` }}>
               <div style={{ fontSize:"clamp(22px,3vw,36px)", fontWeight:800, color:"#fff", letterSpacing:"-0.02em", lineHeight:1 }}>{num}</div>
@@ -232,8 +250,8 @@ function Hero({ goTo }) {
 // ── ABOUT ────────────────────────────────────────────────────────────────────
 function About() {
   return (
-    <section id="about" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }}>
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr", gap:80 }}>
+          <section id="about" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }} className="section-pad">
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr", gap:80 }} className="about-grid">
         <div>
           <div style={{ fontSize:11, fontWeight:700, color:RED, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:20 }}>About</div>
           <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800, color:"#fff", lineHeight:1.1, letterSpacing:"-0.02em" }}>Engineer.<br />Builder.</h2>
@@ -245,7 +263,7 @@ function About() {
           <p style={{ fontSize:17, color:"#777", lineHeight:1.9, marginBottom:48 }}>
             Currently pursuing MS Information Systems at Northeastern (GPA 3.686), with a focus on generative AI and deep learning. Previously built production apps serving 200+ users, managed 500+ enterprise cases, and trained models on A100 GPUs.
           </p>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:0, border:`1px solid ${BORDER}`, borderRadius:8, overflow:"hidden" }}>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:0, border:`1px solid ${BORDER}`, borderRadius:8, overflow:"hidden" }} className="stats-grid">
             {[["7","Projects"],["200+","Users"],["500+","Cases"],["3","LLM Systems"]].map(([num,label],i) => (
               <div key={label} style={{ padding:"28px 20px", borderRight: i<3 ? `1px solid ${BORDER}` : "none", background:"#0a0a0a" }}>
                 <div style={{ fontSize:32, fontWeight:800, color:"#fff", letterSpacing:"-0.02em" }}>{num}</div>
@@ -264,7 +282,7 @@ function ProjectRow({ p, onClick, last }) {
   const [hov, setHov] = useState(false);
   return (
     <div onClick={() => onClick(p)} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ display:"grid", gridTemplateColumns:"80px 1fr auto", alignItems:"center", gap:40, padding:"28px 0", borderBottom: last ? "none" : `1px solid ${BORDER}`, cursor:"pointer", transition:"background 0.2s", background: hov ? "#0d0d0d" : "transparent", borderRadius: hov ? 8 : 0, padding: hov ? "28px 20px" : "28px 0" }}>
+      style={{ display:"grid", gridTemplateColumns:"80px 1fr auto", alignItems:"center", gap:40, padding:"28px 0", borderBottom: last ? "none" : `1px solid ${BORDER}`, cursor:"pointer", transition:"background 0.2s", background: hov ? "#0d0d0d" : "transparent", borderRadius: hov ? 8 : 0, padding: hov ? "28px 20px" : "28px 0" }} className="project-row">
       <div style={{ fontSize:12, fontWeight:700, color: hov ? RED : "#333", letterSpacing:"0.1em", transition:"color 0.2s" }}>{p.number}</div>
       <div>
         <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:8 }}>
@@ -277,7 +295,7 @@ function ProjectRow({ p, onClick, last }) {
           ))}
         </div>
       </div>
-      <div style={{ display:"flex", alignItems:"center", gap:24 }}>
+      <div style={{ display:"flex", alignItems:"center", gap:24 }} className="project-metric">
         <span style={{ fontSize:13, fontWeight:700, color: RED, whiteSpace:"nowrap" }}>{p.metric}</span>
         <span style={{ fontSize:18, color: hov ? "#fff" : "#333", transition:"all 0.2s", transform: hov ? "translateX(4px)" : "none" }}>→</span>
       </div>
@@ -332,7 +350,7 @@ function ProjectDetail({ p, onBack }) {
 
       {p.screenshot && (
         <div style={{ marginBottom:56, borderRadius:12, overflow:"hidden", border:`1px solid ${BORDER}` }}>
-          <img src={`/portfolio/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
+          <img src={`/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
         </div>
       )}
       <div style={{ height:1, background: BORDER, marginBottom:56 }} />
@@ -360,7 +378,7 @@ function ProjectDetail({ p, onBack }) {
 
 function Projects({ onSelect }) {
   return (
-    <section id="projects" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }}>
+          <section id="projects" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }} className="section-pad">
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", marginBottom:64 }}>
         <div>
           <div style={{ fontSize:11, fontWeight:700, color:RED, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Projects</div>
@@ -380,7 +398,7 @@ function Projects({ onSelect }) {
 // ── SKILLS ───────────────────────────────────────────────────────────────────
 function Skills() {
   return (
-    <section id="skills" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }}>
+          <section id="skills" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }} className="section-pad">
       <div style={{ fontSize:11, fontWeight:700, color:RED, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Skills</div>
       <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800, color:"#fff", letterSpacing:"-0.02em", marginBottom:64 }}>Technical Stack</h2>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:40 }}>
@@ -406,8 +424,8 @@ function Skills() {
 // ── CONTACT ──────────────────────────────────────────────────────────────────
 function Contact() {
   return (
-    <section id="contact" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }}>
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }}>
+          <section id="contact" style={{ maxWidth:1200, margin:"0 auto", padding:"120px 40px", borderTop:`1px solid ${BORDER}` }} className="section-pad">
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }} className="contact-grid">
         <div>
           <div style={{ fontSize:11, fontWeight:700, color:RED, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Contact</div>
           <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800, color:"#fff", letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:24 }}>
@@ -458,6 +476,7 @@ export default function App() {
 
   return (
     <div style={{ background:"#000", color:"#fff", fontFamily:"'Inter',system-ui,-apple-system,sans-serif", minHeight:"100vh", overflowX:"hidden" }}>
+      <style>{mobileCSS}</style>
       <Nav goTo={goTo} />
       {proj ? (
         <ProjectDetail p={proj} onBack={closeProject} />
