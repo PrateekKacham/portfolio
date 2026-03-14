@@ -350,7 +350,7 @@ function ProjectDetail({ p, onBack }) {
 
       {p.screenshot && (
         <div style={{ marginBottom:56, borderRadius:12, overflow:"hidden", border:`1px solid ${BORDER}` }}>
-          <img src={`/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
+          <img src={`/portfolio/${p.screenshot}`} alt={p.title} style={{ width:"100%", display:"block" }} />
         </div>
       )}
       <div style={{ height:1, background: BORDER, marginBottom:56 }} />
@@ -407,9 +407,9 @@ function Skills() {
             <div style={{ fontSize:11, fontWeight:700, color:RED, letterSpacing:"0.15em", textTransform:"uppercase", marginBottom:20, paddingBottom:12, borderBottom:`1px solid ${BORDER}` }}>{cat}</div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
               {items.map(sk => (
-                <span key={sk} style={{ fontSize:12, padding:"5px 12px", borderRadius:4, background:"#0d0d0d", border:`1px solid ${BORDER}`, color:"#666", fontWeight:500, transition:"all 0.2s", cursor:"default" }}
+                <span key={sk} style={{ fontSize:12, padding:"5px 12px", borderRadius:4, background:"#0d0d0d", border:`1px solid ${BORDER}`,                   color:"#aaa", fontWeight:500, transition:"all 0.2s", cursor:"default" }}
                   onMouseEnter={e=>{e.target.style.color="#fff";e.target.style.borderColor="#333"}}
-                  onMouseLeave={e=>{e.target.style.color="#666";e.target.style.borderColor=BORDER}}>
+                  onMouseLeave={e=>{e.target.style.color="#aaa";e.target.style.borderColor=BORDER}}>
                   {sk}
                 </span>
               ))}
@@ -431,7 +431,7 @@ function Contact() {
           <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800, color:"#fff", letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:24 }}>
             Let's build<br />something great
           </h2>
-          <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:0 }}>
+          <p style={{ fontSize:16, color:"#aaa", lineHeight:1.9, marginBottom:0 }}>
             Open to software engineering, full-stack, and AI/ML roles — internships, co-ops, and full-time. Available immediately. Based in Boston, open to relocation.
           </p>
         </div>
